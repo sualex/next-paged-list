@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import { AppCacheProvider as MuiCacheProvider } from "@mui/material-nextjs/v14-pagesRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
@@ -12,6 +13,7 @@ import Head from "next/head";
 import { useState } from "react";
 
 import theme from "@/app/styles/theme";
+import { RootLayout } from "@/widgets/layout";
 
 const App = (props: AppProps) => {
   const { Component, pageProps } = props;
@@ -41,7 +43,13 @@ const App = (props: AppProps) => {
           <QueryClientProvider client={queryClient}>
             <HydrationBoundary state={pageProps.dehydratedState}>
               <ReactQueryDevtools initialIsOpen={false} />
-              <Component {...pageProps} />
+              <RootLayout
+                css={css`
+                  border: 4px solid red;
+                `}
+              >
+                <Component {...pageProps} />
+              </RootLayout>
             </HydrationBoundary>
           </QueryClientProvider>
         </MuiThemeProvider>
