@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import Image from "next/image";
@@ -16,7 +17,14 @@ export default function Home() {
         <link rel="icon" href="/public/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
+        <div
+          className={styles.description}
+          css={css`
+            &&& {
+              border: 2px solid red;
+            }
+          `}
+        >
           <p>
             Get started by editing&nbsp;
             <code className={styles.code}>src/pages/index.tsx</code>
