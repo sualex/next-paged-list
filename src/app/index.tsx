@@ -1,6 +1,6 @@
-import { AppCacheProvider } from "@mui/material-nextjs/v14-pagesRouter";
+import { AppCacheProvider as MuiCacheProvider } from "@mui/material-nextjs/v14-pagesRouter";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import {
   HydrationBoundary,
   QueryClient,
@@ -35,17 +35,17 @@ const App = (props: AppProps) => {
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <AppCacheProvider {...props}>
-        <QueryClientProvider client={queryClient}>
-          <HydrationBoundary state={pageProps.dehydratedState}>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
+      <MuiCacheProvider {...props}>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <QueryClientProvider client={queryClient}>
+            <HydrationBoundary state={pageProps.dehydratedState}>
               <ReactQueryDevtools initialIsOpen={false} />
               <Component {...pageProps} />
-            </ThemeProvider>
-          </HydrationBoundary>
-        </QueryClientProvider>
-      </AppCacheProvider>
+            </HydrationBoundary>
+          </QueryClientProvider>
+        </MuiThemeProvider>
+      </MuiCacheProvider>
     </>
   );
 };
