@@ -5,7 +5,11 @@ import {
   ListItemButton,
   ListItemText,
   ListProps,
+  Pagination,
+  PaginationItem,
+  Stack,
 } from "@mui/material";
+import { useRouter } from "next/router";
 
 import { Link } from "@/shared/ui";
 
@@ -13,8 +17,9 @@ import { useItems } from "../model";
 
 export const ItemList = ({ ...props }: ListProps) => {
   const { data } = useItems();
+  const router = useRouter();
   return (
-    <nav aria-label="List of items">
+    <Stack aria-label="List of items" spacing={1}>
       <List {...props}>
         {data?.items?.map((item) => {
           return (
@@ -31,6 +36,22 @@ export const ItemList = ({ ...props }: ListProps) => {
           );
         })}
       </List>
-    </nav>
+      <Stack direction="row" justifyContent="center">
+        <Pagination
+          size="large"
+          count={data?.pages}
+          color="primary"
+          renderItem={(item) => {
+            return (
+              <PaginationItem
+                component={Link}
+                href={`${router.route}?page=${item.page}`}
+                {...item}
+              />
+            );
+          }}
+        />
+      </Stack>
+    </Stack>
   );
 };
