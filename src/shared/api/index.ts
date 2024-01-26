@@ -18,10 +18,10 @@ export interface ItemDTO {
   text?: string;
 }
 
-export function getItemList(page?: string) {
-  return fetch(`${BASE_URL}/?w=list&page=${page ?? "1"}`).then((response) =>
-    response.json()
-  );
+export function getItemList(page: string | string[] | null) {
+  return fetch(`${BASE_URL}/?w=list${page ? `&page=${page}` : ""}`).then(
+    (response) => response.json()
+  ) as Promise<ItemListDTO>;
 }
 
 export function getItem(id: string) {

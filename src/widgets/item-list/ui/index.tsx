@@ -18,6 +18,7 @@ import { useItems } from "../model";
 export const ItemList = ({ ...props }: ListProps) => {
   const { data } = useItems();
   const router = useRouter();
+
   return (
     <Stack aria-label="List of items" spacing={1}>
       <List {...props}>
@@ -40,12 +41,18 @@ export const ItemList = ({ ...props }: ListProps) => {
         <Pagination
           size="large"
           count={data?.pages}
+          page={Number(router?.query?.page) || 1}
           color="primary"
           renderItem={(item) => {
             return (
               <PaginationItem
                 component={Link}
-                href={`${router.route}?page=${item.page}`}
+                href={{
+                  pathname: "/list/[page]",
+                  query: {
+                    page: item.page,
+                  },
+                }}
                 {...item}
               />
             );
