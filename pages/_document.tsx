@@ -13,7 +13,7 @@ import {
 } from "next/document";
 import * as React from "react";
 
-import theme, { roboto } from "@/app/theme";
+import theme, { roboto } from "@/app/styles/theme";
 
 export default function MyDocument(
   props: DocumentProps & DocumentHeadTagsProps
