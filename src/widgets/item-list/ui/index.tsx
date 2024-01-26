@@ -6,6 +6,8 @@ import {
   ListProps,
 } from "@mui/material";
 
+import { Link } from "@/shared/ui";
+
 import { useItems } from "../model";
 
 export const ItemList = ({ ...props }: ListProps) => {
@@ -16,7 +18,7 @@ export const ItemList = ({ ...props }: ListProps) => {
         {data?.items?.map((item) => {
           return (
             <ListItem key={item?.id} disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} href={`/item/${item?.id}`}>
                 <ListItemText primary={item?.name} />
               </ListItemButton>
             </ListItem>
