@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 
-import { Element } from "@/entities/element";
+import { ElementListItem } from "@/entities/element";
 import { Article, Nav, Section } from "@/shared/ui";
 
 import { useElements } from "../model";
@@ -35,7 +35,7 @@ export const Elements = ({ ...props }: ListProps) => {
           <Nav aria-label="Cписок элементов" padding="0.5rem">
             <List {...props}>
               {elements?.data?.items?.map((item) => {
-                return <Element key={item?.id} element={item} />;
+                return <ElementListItem key={item?.id} element={item} />;
               })}
             </List>
           </Nav>
