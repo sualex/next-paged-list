@@ -1,2 +1,2 @@
 export { Elements } from "./ui";
-export * from "./model";
+export * from "./api";

@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { ElementListItem } from "@/entities/element";
 import { Article, Nav, Section } from "@/shared/ui";
 
-import { useElements } from "../model";
+import { useElements } from "../api";
 import { Pagination } from "./pagination";
 
 export const Elements = ({ ...props }: ListProps) => {

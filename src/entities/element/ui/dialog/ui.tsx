@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { useElement } from "@/entities/element/model";
+import { useElement } from "@/entities/element/api";
 import { Link } from "@/shared/ui";
 
 export const ElementDialog = ({ ...props }: Omit<DialogProps, "open">) => {
