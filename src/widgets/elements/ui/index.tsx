@@ -7,7 +7,6 @@ import {
   useTheme,
 } from "@mui/material";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 import { Element } from "@/entities/element";
 import { Article, Nav, Section } from "@/shared/ui";
@@ -20,15 +19,6 @@ export const Elements = ({ ...props }: ListProps) => {
   const theme = useTheme();
 
   const { isLoading, data } = useItems();
-
-  useEffect(() => {
-    console.log(
-      "xxxxxxxxxxxxxxxxxxx router.isFallback ",
-      router.isFallback,
-      isLoading,
-      data
-    );
-  }, [router.isFallback, data, isLoading]);
 
   return (
     <Article
