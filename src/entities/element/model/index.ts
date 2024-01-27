@@ -5,11 +5,11 @@ import {
 } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
-import { ElementListDTO } from "@/shared/api";
+import { ElementDTO } from "@/shared/api";
 import * as api from "@/shared/api";
 
 export const useElement = (
-  queryOptions?: Partial<UseQueryOptions<ElementListDTO>>
+  queryOptions?: Partial<UseQueryOptions<ElementDTO>>
 ) => {
   const router = useRouter();
 
@@ -17,7 +17,7 @@ export const useElement = (
     id: string;
   };
 
-  return useQuery<ElementListDTO>({
+  return useQuery<ElementDTO>({
     queryKey: ["element", id],
     queryFn: () => api.getItem(id),
     enabled: router.isReady,
