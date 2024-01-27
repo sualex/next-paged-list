@@ -18,7 +18,7 @@ export const Elements = ({ ...props }: ListProps) => {
   const router = useRouter();
   const theme = useTheme();
 
-  const { isLoading, data } = useElements();
+  const elements = useElements();
 
   return (
     <Article
@@ -28,13 +28,13 @@ export const Elements = ({ ...props }: ListProps) => {
         border-radius: 0.5rem;
       `}
     >
-      {!data ? (
+      {!elements?.data ? (
         <LinearProgress />
       ) : (
         <>
           <Nav aria-label="Cписок элементов" padding="0.5rem">
             <List {...props}>
-              {data?.items?.map((item) => {
+              {elements?.data?.items?.map((item) => {
                 return <Element key={item?.id} item={item} />;
               })}
             </List>
@@ -43,7 +43,7 @@ export const Elements = ({ ...props }: ListProps) => {
           <Section direction="row" justifyContent="center" padding="0.5rem">
             <Pagination
               aria-label="Cписок страниц"
-              count={data?.pages}
+              count={elements?.data?.pages}
               page={Number(router?.query?.page) || 1}
             />
           </Section>

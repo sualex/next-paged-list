@@ -7,14 +7,14 @@ import {
 } from "@mui/material";
 import * as React from "react";
 
-import { ElementListElementDTO } from "@/shared/api";
+import { ElementDTO } from "@/shared/api";
 import { Link } from "@/shared/ui";
 
 export const Element = ({
   item,
   ...props
 }: ListItemProps & {
-  item: ElementListElementDTO;
+  item: ElementDTO;
 }) => {
   return (
     <ListItem disablePadding {...props}>

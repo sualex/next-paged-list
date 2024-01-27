@@ -1,21 +1,17 @@
 const BASE_URL = "https://taxivoshod.ru/testapi";
 
-export interface ElementListElementDTO {
+export interface ElementDTO {
   id?: number;
   name?: string;
+  text?: string;
+  result?: number;
 }
 
 export interface ElementListDTO {
   page?: number;
   pages?: number;
   result?: number;
-  items?: Array<ElementListElementDTO>;
-}
-
-export interface ElementDTO {
-  page?: number;
-  name?: string;
-  text?: string;
+  items?: Array<ElementDTO>;
 }
 
 export function getItemList(page: string | string[] | null) {
