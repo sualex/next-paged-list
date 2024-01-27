@@ -17,9 +17,7 @@ import { Pagination } from "./pagination";
 export const Elements = ({ ...props }: ListProps) => {
   const router = useRouter();
   const theme = useTheme();
-
   const elements = useElements();
-
   return (
     <Article
       spacing={1}

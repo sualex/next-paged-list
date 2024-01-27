@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   Button,
@@ -41,12 +40,7 @@ export const ElementDialog = ({ ...props }: Omit<DialogProps, "open">) => {
       >
         <CloseIcon />
       </IconButton>
-      <DialogContent
-        dividers
-        css={css`
-          border: 4px solid red;
-        `}
-      >
+      <DialogContent dividers>
         <Typography>
           {element?.error
             ? getErrorMessage(element?.error)
@@ -54,7 +48,7 @@ export const ElementDialog = ({ ...props }: Omit<DialogProps, "open">) => {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus component={Link} href="/">
+        <Button autoFocus component={Link} href="/elements/1">
           OK
         </Button>
       </DialogActions>

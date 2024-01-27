@@ -13,21 +13,24 @@ export interface ElementListDTO {
   pages?: number;
   result?: number;
   items?: Array<ElementDTO>;
+  message?: string;
+}
+
+function checkError(res: ElementListDTO | ElementDTO) {
+  if (res?.result === 0) {
+    throw new Error(res?.message);
+  }
+  return res;
 }
 
 export function getItemList(page: string | string[] | null) {
-  return fetch(`${BASE_URL}/?w=list${page ? `&page=${page}` : ""}`).then(
-    (response) => response.json()
-  ) as Promise<ElementListDTO>;
+  return fetch(`${BASE_URL}/?w=list${page ? `&page=${page}` : ""}`)
+    .then((response) => response.json())
+    .then(checkError) as Promise<ElementListDTO>;
 }
 
 export function getItem(id?: string) {
-  return fetch(`${BASE_URL}/?w=item${id ? `&id=${id}` : ""}`).then((response) =>
-    response.json().then((element: ElementDTO) => {
-      if (element?.result === 0) {
-        throw new Error(element?.message);
-      }
-      return element;
-    })
-  ) as Promise<ElementDTO>;
+  return fetch(`${BASE_URL}/?w=item${id ? `&id=${id}` : ""}`)
+    .then((response) => response.json())
+    .then(checkError) as Promise<ElementDTO>;
 }
