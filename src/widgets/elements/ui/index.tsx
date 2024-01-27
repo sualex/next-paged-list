@@ -1,5 +1,11 @@
 import { css } from "@emotion/react";
-import { Divider, List, ListProps, useTheme } from "@mui/material";
+import {
+  Divider,
+  LinearProgress,
+  List,
+  ListProps,
+  useTheme,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -32,21 +38,27 @@ export const Elements = ({ ...props }: ListProps) => {
         border-radius: 0.5rem;
       `}
     >
-      <Nav aria-label="Cписок элементов" padding="0.5rem">
-        <List {...props}>
-          {data?.items?.map((item) => {
-            return <Element key={item?.id} item={item} />;
-          })}
-        </List>
-      </Nav>
-      <Divider />
-      <Section direction="row" justifyContent="center" padding="0.5rem">
-        <Pagination
-          aria-label="Cписок страниц"
-          count={data?.pages}
-          page={Number(router?.query?.page) || 1}
-        />
-      </Section>
+      {!data ? (
+        <LinearProgress />
+      ) : (
+        <>
+          <Nav aria-label="Cписок элементов" padding="0.5rem">
+            <List {...props}>
+              {data?.items?.map((item) => {
+                return <Element key={item?.id} item={item} />;
+              })}
+            </List>
+          </Nav>
+          <Divider />
+          <Section direction="row" justifyContent="center" padding="0.5rem">
+            <Pagination
+              aria-label="Cписок страниц"
+              count={data?.pages}
+              page={Number(router?.query?.page) || 1}
+            />
+          </Section>
+        </>
+      )}
     </Article>
   );
 };

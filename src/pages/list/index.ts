@@ -10,7 +10,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   await queryClient.prefetchQuery({
     queryKey: ["items", context?.params?.page || "1"],
     queryFn: () => {
-      throw new Error("errrrrrrrrrrrrrr");
       return api.getItemList(context?.params?.page || "1");
     },
   });
