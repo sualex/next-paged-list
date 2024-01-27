@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
 
-import { ItemList } from "@/widgets/item-list";
+import { Elements } from "@/widgets/elements";
 
-export const ListPage: NextPage = () => <ItemList />;
+export const ListPage: NextPage = () => <Elements />;

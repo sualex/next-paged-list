@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 
 export const ReactQueryProvider = ({
   pageProps,
@@ -24,6 +24,14 @@ export const ReactQueryProvider = ({
         },
       })
   );
+
+  useEffect(() => {
+    console.log(
+      "xxxxxxxxxxxxxxxxxxx pageProps.dehydratedState ",
+      pageProps.dehydratedState
+    );
+  }, [pageProps.dehydratedState]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <HydrationBoundary state={pageProps.dehydratedState}>

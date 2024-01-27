@@ -9,7 +9,10 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["items", context?.params?.page || "1"],
-    queryFn: () => api.getItemList(context?.params?.page || "1"),
+    queryFn: () => {
+      throw new Error("errrrrrrrrrrrrrr");
+      return api.getItemList(context?.params?.page || "1");
+    },
   });
   return {
     props: {
@@ -19,11 +22,15 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 export async function getStaticPaths() {
-  const { pages } = await api.getItemList("1");
-  const paths = [...Array(pages)]
-    .map((_, i) => String(i + 1))
-    .map((page) => ({
-      params: { page },
-    }));
-  return { paths, fallback: "blocking" };
+  return {
+    paths: [
+      {
+        params: { page: "1" },
+      },
+      {
+        params: { page: "2" },
+      },
+    ],
+    fallback: true,
+  };
 }
