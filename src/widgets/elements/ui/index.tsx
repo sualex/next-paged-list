@@ -11,14 +11,14 @@ import { useRouter } from "next/router";
 import { Element } from "@/entities/element";
 import { Article, Nav, Section } from "@/shared/ui";
 
-import { useItems } from "../model";
+import { useElements } from "../model";
 import { Pagination } from "./pagination";
 
 export const Elements = ({ ...props }: ListProps) => {
   const router = useRouter();
   const theme = useTheme();
 
-  const { isLoading, data } = useItems();
+  const { isLoading, data } = useElements();
 
   return (
     <Article
