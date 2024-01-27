@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Container, ContainerProps, Toolbar } from "@mui/material";
+import { Container, ContainerProps } from "@mui/material";
 
 export const RootLayout = ({ children, ...props }: ContainerProps) => {
   return (
@@ -13,7 +13,7 @@ export const RootLayout = ({ children, ...props }: ContainerProps) => {
       `}
       {...props}
     >
-      <Toolbar />
+      <div />
       {children}
     </Container>
   );

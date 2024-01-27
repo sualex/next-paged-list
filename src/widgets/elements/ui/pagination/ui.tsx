@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import {
   Pagination as MuiPagination,
   PaginationItem,
@@ -25,6 +26,13 @@ export function Pagination({ ...props }: PaginationProps) {
           />
         );
       }}
+      css={css`
+        && {
+          .MuiPagination-ul {
+            gap: 0.5rem;
+          }
+        }
+      `}
       {...props}
     />
   );
