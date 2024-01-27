@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
@@ -8,7 +7,6 @@ import { MuiProvider, ReactQueryProvider } from "./providers";
 
 const App = (props: AppProps) => {
   const { Component, pageProps } = props;
-
   return (
     <>
       <Head>
@@ -16,11 +14,7 @@ const App = (props: AppProps) => {
       </Head>
       <ReactQueryProvider pageProps={pageProps}>
         <MuiProvider {...props}>
-          <RootLayout
-            css={css`
-              border: 4px solid red;
-            `}
-          >
+          <RootLayout>
             <Component {...pageProps} />
           </RootLayout>
         </MuiProvider>
