@@ -1,3 +1,3 @@
-export { ListPage } from "./ui";
+export { ElementsPage } from "./ui";
 
 export { getStaticPaths, getStaticProps } from "./api";

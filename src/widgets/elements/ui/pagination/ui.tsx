@@ -16,7 +16,7 @@ export function Pagination({ ...props }: PaginationProps) {
           <PaginationItem
             component={Link}
             href={{
-              pathname: "/list/[page]",
+              pathname: "/elements/[page]",
               query: {
                 page: item.page,
               },

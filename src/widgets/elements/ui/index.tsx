@@ -35,7 +35,7 @@ export const Elements = ({ ...props }: ListProps) => {
           <Nav aria-label="Cписок элементов" padding="0.5rem">
             <List {...props}>
               {elements?.data?.items?.map((item) => {
-                return <Element key={item?.id} item={item} />;
+                return <Element key={item?.id} element={item} />;
               })}
             </List>
           </Nav>

@@ -11,16 +11,16 @@ import { ElementDTO } from "@/shared/api";
 import { Link } from "@/shared/ui";
 
 export const Element = ({
-  item,
+  element,
   ...props
 }: ListItemProps & {
-  item: ElementDTO;
+  element: ElementDTO;
 }) => {
   return (
     <ListItem disablePadding {...props}>
-      <ListItemButton component={Link} href={`/item/${item?.id}`}>
+      <ListItemButton component={Link} href={`/element/${element?.id}`}>
         <ListItemText
-          primary={item?.name}
+          primary={element?.name}
           css={css`
             text-align: center;
           `}
