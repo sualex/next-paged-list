@@ -4,12 +4,14 @@ import {
   LinearProgress,
   List,
   ListProps,
+  Typography,
   useTheme,
 } from "@mui/material";
 import { useRouter } from "next/router";
 
 import { ElementListItem } from "@/entities/element";
 import { Article, Nav, Section } from "@/shared/ui";
+import { getErrorMessage } from "@/shared/util/error";
 
 import { useElements } from "../api";
 import { Pagination } from "./pagination";
@@ -26,14 +28,21 @@ export const Elements = ({ ...props }: ListProps) => {
         border-radius: 0.5rem;
       `}
     >
-      {!elements?.data ? (
-        <LinearProgress />
-      ) : (
+      {elements?.isLoading && <LinearProgress />}
+      {!!elements?.error && (
+        <Typography variant="h5">{getErrorMessage(elements?.error)}</Typography>
+      )}
+      {!!elements?.data && (
         <>
           <Nav aria-label="Cписок элементов" padding="0.5rem">
             <List {...props}>
               {elements?.data?.items?.map((item) => {
-                return <ElementListItem key={item?.id} element={item} />;
+                return (
+                  <ElementListItem
+                    key={item?.id}
+                    element={{ ...item, page: elements?.data?.page }}
+                  />
+                );
               })}
             </List>
           </Nav>

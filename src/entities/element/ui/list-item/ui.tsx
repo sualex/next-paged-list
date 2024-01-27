@@ -7,18 +7,21 @@ import {
 } from "@mui/material";
 import * as React from "react";
 
-import { ElementDTO } from "@/shared/api";
+import { IElement } from "@/shared/api";
 import { Link } from "@/shared/ui";
 
 export const ElementListItem = ({
   element,
   ...props
 }: ListItemProps & {
-  element: ElementDTO;
+  element: IElement;
 }) => {
   return (
     <ListItem disablePadding {...props}>
-      <ListItemButton component={Link} href={`/element/${element?.id}`}>
+      <ListItemButton
+        component={Link}
+        href={`/element/${element?.id}?page=${element?.page}`}
+      >
         <ListItemText
           primary={element?.name}
           css={css`

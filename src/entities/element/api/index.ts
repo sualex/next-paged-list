@@ -6,17 +6,17 @@ import {
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 
-import { ElementDTO } from "@/shared/api";
+import { IElement } from "@/shared/api";
 import * as api from "@/shared/api";
 
 export const useCurrentElement = (
-  queryOptions?: Partial<UseQueryOptions<ElementDTO>>
+  queryOptions?: Partial<UseQueryOptions<IElement>>
 ) => {
   const router = useRouter();
   const { id } = router.query as {
     id: string | undefined;
   };
-  const { isLoading: isQueryLoading, ...query } = useQuery<ElementDTO>({
+  const { isLoading: isQueryLoading, ...query } = useQuery<IElement>({
     queryKey: ["element", id],
     queryFn: () => api.getItem(id),
     placeholderData: keepPreviousData,

@@ -9,6 +9,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/router";
 
 import { useCurrentElement } from "@/entities/element/api";
 import { Link } from "@/shared/ui";
@@ -16,6 +17,8 @@ import { getErrorMessage } from "@/shared/util/error";
 
 export const ElementDialog = ({ ...props }: Omit<DialogProps, "open">) => {
   const element = useCurrentElement();
+  const router = useRouter();
+  const closeHref = `/elements/${router?.query?.page || 1}`;
   return (
     <Dialog
       fullWidth
@@ -30,7 +33,7 @@ export const ElementDialog = ({ ...props }: Omit<DialogProps, "open">) => {
       <IconButton
         aria-label="close"
         component={Link}
-        href="/"
+        href={closeHref}
         sx={{
           position: "absolute",
           right: 8,
@@ -48,7 +51,7 @@ export const ElementDialog = ({ ...props }: Omit<DialogProps, "open">) => {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus component={Link} href="/elements/1">
+        <Button autoFocus component={Link} href={closeHref}>
           OK
         </Button>
       </DialogActions>
