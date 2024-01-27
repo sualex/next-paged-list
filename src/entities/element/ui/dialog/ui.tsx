@@ -11,20 +11,22 @@ import {
   Typography,
 } from "@mui/material";
 
-import { useElement } from "@/entities/element/api";
+import { useCurrentElement } from "@/entities/element/api";
 import { Link } from "@/shared/ui";
+import { getErrorMessage } from "@/shared/util/error";
 
 export const ElementDialog = ({ ...props }: Omit<DialogProps, "open">) => {
-  const element = useElement();
+  const element = useCurrentElement();
   return (
     <Dialog
-      // onClose={handleClose}
+      fullWidth
+      maxWidth="sm"
       aria-labelledby="customized-dialog-title"
       open
       {...props}
     >
       <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-        {element?.data?.name}
+        {element?.error ? "Ошибка" : element?.data?.name}
       </DialogTitle>
       <IconButton
         aria-label="close"
@@ -42,18 +44,17 @@ export const ElementDialog = ({ ...props }: Omit<DialogProps, "open">) => {
       <DialogContent
         dividers
         css={css`
-          min-width: 20rem;
+          border: 4px solid red;
         `}
       >
-        <Typography>{element?.data?.text}</Typography>
+        <Typography>
+          {element?.error
+            ? getErrorMessage(element?.error)
+            : element?.data?.text}
+        </Typography>
       </DialogContent>
       <DialogActions>
-        <Button
-          autoFocus
-          component={Link}
-          href="/"
-          // onClick={handleClose}
-        >
+        <Button autoFocus component={Link} href="/">
           OK
         </Button>
       </DialogActions>

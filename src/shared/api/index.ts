@@ -5,6 +5,7 @@ export interface ElementDTO {
   name?: string;
   text?: string;
   result?: number;
+  message?: string;
 }
 
 export interface ElementListDTO {
@@ -20,8 +21,13 @@ export function getItemList(page: string | string[] | null) {
   ) as Promise<ElementListDTO>;
 }
 
-export function getItem(id: string) {
-  return fetch(`${BASE_URL}/?w=item&id=${id}`).then((response) =>
-    response.json()
+export function getItem(id?: string) {
+  return fetch(`${BASE_URL}/?w=item${id ? `&id=${id}` : ""}`).then((response) =>
+    response.json().then((element: ElementDTO) => {
+      if (element?.result === 0) {
+        throw new Error(element?.message);
+      }
+      return element;
+    })
   ) as Promise<ElementDTO>;
 }
