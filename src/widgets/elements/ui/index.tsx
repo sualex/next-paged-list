@@ -20,7 +20,11 @@ export const Elements = ({ ...props }: ListProps) => {
   const router = useRouter();
   const theme = useTheme();
   const elements = useElements();
-  return (
+  return elements?.error ? (
+    <Typography variant="h5" alignSelf="center">
+      {getErrorMessage(elements?.error)}
+    </Typography>
+  ) : (
     <Article
       spacing={1}
       css={css`
@@ -29,9 +33,9 @@ export const Elements = ({ ...props }: ListProps) => {
       `}
     >
       {elements?.isLoading && <LinearProgress />}
-      {!!elements?.error && (
-        <Typography variant="h5">{getErrorMessage(elements?.error)}</Typography>
-      )}
+      {/*{!!elements?.error && (*/}
+      {/*  <Typography variant="h5">{getErrorMessage(elements?.error)}</Typography>*/}
+      {/*)}*/}
       {!!elements?.data && (
         <>
           <Nav aria-label="Cписок элементов" padding="0.5rem">
